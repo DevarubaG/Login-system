@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Signin Page</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background: black; /* Replace with your image path */
+        background-position: center; /* Center the image */
+        background-size: cover; /* Ensure the image covers the entire background */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Ensure full viewport height */
+        margin: 0; /* Remove default margin */
+      }
+      .form-container {
+        background: white; /* Optional: to make the form more readable */
+        width: 650px;
+        padding: 20px; /* Adjusted padding */
+        border-radius: 15px; /* Adjusted border-radius */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      label,
+      input {
+        margin: 10px 0;
+        width: 90%;
+        height: 30px; /* Adjusted height for better usability */
+      }
+      button {
+        margin-top: 10px; /* Increased margin for better spacing */
+        height: 35px; /* Adjusted height for better usability */
+        background: gray;
+        width: 50%;
+        color: white; /* Added text color */
+        border: none; /* Removed border */
+        border-radius: 5px; /* Rounded corners for button */
+      }
+      .alert {
+        width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            <strong>{{ message }}</strong>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <h3><center>Sign In</center></h3>
+      <form action="/signin" method="post">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter Your Username"
+          required
+        />
+
+        <label for="pass1">Password</label>
+        <input
+          type="password"
+          id="pass1"
+          name="pass1"
+          placeholder="Enter Your Password"
+          required
+        /><br />
+
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+  </body>
+</html>

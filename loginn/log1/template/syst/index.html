@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Authentication</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background: black; /* Replace with your image path */
+        background-position: center; /* Center the image */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Ensure full viewport height */
+        margin: 0; /* Remove default margin */
+      }
+      .form-container {
+        background: white; /* Optional: to make the form more readable */
+        width: 1000px;
+        padding: 25px;
+        border-radius: 50px;
+        height: 625px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Ensure form takes full width of container */
+      }
+      label,
+      input {
+        margin: 10px 0;
+        width: 90%;
+        height: 25px;
+      }
+      button {
+        margin-top: 1px;
+        height: 30px;
+        background: gray;
+        width: 50%;
+      }
+      .alert {
+        width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible show"
+        role="alert"
+      >
+        <strong>Message:</strong> {{ message }}
+      </div>
+      {% endfor %}
+      <h3><center>Welcome</center></h3>
+
+      {% if user.is_authenticated %}
+      <h3>Hello {{ fname }}</h3>
+      <h4>You are successfully logged in</h4>
+      <button type="submit"><a href="/signout">Sign Out</a></button>
+      {% else %}
+      <button type="submit"><a href="/signin">Sign In</a></button>
+      <button type="submit"><a href="/signup">Sign Up</a></button>
+      {% endif %}
+    </div>
+
+    <script src="" async defer></script>
+  </body>
+</html>
